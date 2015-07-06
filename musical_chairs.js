@@ -1380,7 +1380,7 @@ p.nominalBounds = new cjs.Rectangle(-2.4,-4.8,15.1,25);
       }
  var playMusic = function(){
      showCap("p1_cap1");
-         soundToPlay.playSound();
+         //soundToPlay.playSound();
          
          startWalk();
          console.log("playMusic");
@@ -1390,7 +1390,7 @@ p.nominalBounds = new cjs.Rectangle(-2.4,-4.8,15.1,25);
   function stopMusic(){
       console.log("stop music");
       showCap(null);
-      soundToPlay.stopSound();
+      //soundToPlay.stopSound();
       //don't enable Play button till everybody is seated or else all hell breaks loose...
       readyListener = createjs.Ticker.addEventListener("tick", checkReady);
           var i, j, thisPlayer, doubleTargChair, thisChair, thisNote;
@@ -1477,7 +1477,7 @@ p.nominalBounds = new cjs.Rectangle(-2.4,-4.8,15.1,25);
       
       
       //create a sound to play
-      soundToPlay = new Sound("loop.mp3", songDuration, 0, -1);
+      //soundToPlay = new Sound("loop.mp3", songDuration, 0, -1);
 
       var i, thisClip;
       
