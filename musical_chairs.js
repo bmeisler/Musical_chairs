@@ -16,6 +16,45 @@ lib.properties = {
 	]
 };
 
+function Sound(_instance, _duration, _id, _loop){
+    this.soundInstance = createjs.Sound.createInstance(_instance, 0, _duration);
+    this.id = _id;
+    this.soundDuration = _duration;
+    this.loop = _loop;
+    this.init();
+    
+}
+Sound.prototype.init = function() {
+    console.log("Sound.init");
+    this.soundInstance.pause();
+    this.soundInstance.setVolume(0.5);
+    this.soundInstance.setPosition(0);
+    this.firstRun = true;
+};
+Sound.prototype.playSound = function() {
+    console.log("Sound.playSound");
+    
+    createjs.Sound.setMute(false);
+    if(this.firstRun){
+        console.log("first time we press play, call play()");
+        this.soundInstance.play({
+            offset: this.startPosition,
+            delay: 0,
+            loop: this.loop
+        });
+    }
+};
+Sound.prototype.stopSound = function() {
+    console.log("Sound.stopSound");
+    this.firstRun = false;
+    createjs.Sound.setMute(true);
+    //this.soundInstance.stop();
+};
+Sound.prototype.unMute = function(){
+    console.log("unMute");
+    createjs.Sound.setMute(false);
+
+};
 
 
 // symbols:
@@ -1341,7 +1380,7 @@ p.nominalBounds = new cjs.Rectangle(-2.4,-4.8,15.1,25);
       }
  var playMusic = function(){
      showCap("p1_cap1");
-         //soundToPlay.playSound();
+         soundToPlay.playSound();
          
          startWalk();
          console.log("playMusic");
@@ -1351,7 +1390,7 @@ p.nominalBounds = new cjs.Rectangle(-2.4,-4.8,15.1,25);
   function stopMusic(){
       console.log("stop music");
       showCap(null);
-      //soundToPlay.stopSound();
+      soundToPlay.stopSound();
       //don't enable Play button till everybody is seated or else all hell breaks loose...
       readyListener = createjs.Ticker.addEventListener("tick", checkReady);
           var i, j, thisPlayer, doubleTargChair, thisChair, thisNote;
@@ -1438,7 +1477,7 @@ p.nominalBounds = new cjs.Rectangle(-2.4,-4.8,15.1,25);
       
       
       //create a sound to play
-      //soundToPlay = new Sound("loop.mp3", songDuration, 0, -1);
+      soundToPlay = new Sound("loop.mp3", songDuration, 0, -1);
 
       var i, thisClip;
       

@@ -1,4 +1,4 @@
-/*global Player, Path, Note */
+/*global Player, Path, Note, Sound*/
 
 
 var viz;
